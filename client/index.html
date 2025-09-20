@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo"><i class="fas fa-share-alt"></i> FileShare</h1>
+            <div class="nav-menu">
+                <button id="loginBtn" class="nav-btn">Login</button>
+                <button id="registerBtn" class="nav-btn">Register</button>
+                <div id="userMenu" class="user-menu" style="display: none;">
+                    <span id="username"></span>
+                    <button id="logoutBtn" class="nav-btn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Welcome Section -->
+        <section id="welcomeSection" class="welcome-section">
+            <h2>Share Files Securely</h2>
+            <p>Upload, share, and manage your files with ease</p>
+            <div class="welcome-actions">
+                <button id="getStartedBtn" class="btn btn-primary">Get Started</button>
+            </div>
+        </section>
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">Username or Email:</label>
+                        <input type="text" id="loginUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div id="registerModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Register</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">Username:</label>
+                        <input type="text" id="registerUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password:</label>
+                        <input type="password" id="registerPassword" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="dashboard" style="display: none;">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <h3><i class="fas fa-upload"></i> Upload File</h3>
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag and drop files here or <span class="browse-link">browse</span></p>
+                    <input type="file" id="fileInput" hidden>
+                </div>
+                
+                <!-- Upload Options -->
+                <div class="upload-options">
+                    <div class="form-group">
+                        <label for="filePassword">Password (optional):</label>
+                        <input type="password" id="filePassword" placeholder="Protect with password">
+                    </div>
+                    <div class="form-group">
+                        <label for="expirationTime">Expires in:</label>
+                        <select id="expirationTime">
+                            <option value="never">Never</option>
+                            <option value="1">1 Hour</option>
+                            <option value="24">24 Hours</option>
+                            <option value="168">7 Days</option>
+                            <option value="720">30 Days</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Upload Progress -->
+                <div id="uploadProgress" class="upload-progress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p class="progress-text">Uploading...</p>
+                </div>
+            </div>
+
+            <!-- Files List -->
+            <div class="files-section">
+                <h3><i class="fas fa-folder"></i> My Files</h3>
+                <div id="filesList" class="files-list">
+                    <!-- Files will be populated here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Download Page (for shared links) -->
+    <section id="downloadPage" class="download-page" style="display: none;">
+        <div class="download-container">
+            <h2><i class="fas fa-download"></i> Download File</h2>
+            <div id="fileInfo" class="file-info">
+                <!-- File info will be populated here -->
+            </div>
+            <div id="passwordSection" class="password-section" style="display: none;">
+                <div class="form-group">
+                    <label for="downloadPassword">Password:</label>
+                    <input type="password" id="downloadPassword" placeholder="Enter password">
+                </div>
+            </div>
+            <button id="downloadBtn" class="btn btn-primary">Download</button>
+        </div>
+    </section>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
