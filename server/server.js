@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
-const path = require('path');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
@@ -24,10 +23,11 @@ app.use(express.static(path.join(__dirname, '../client')));
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/fileshare', {
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
-
-mongoose.connection.on('connected', () => {
+}).then(() => {
   console.log('MongoDB connected successfully');
+}).catch((err) => {
+  console.error('MongoDB connection error:', err);
+  process.exit(1);
 });
 
 // Routes
@@ -43,3 +43,4 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+// // app.use(express.static(path.join(__dirname, '../client')));

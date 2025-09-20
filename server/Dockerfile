@@ -1,4 +1,3 @@
-# Dockerfile (इसमें कोई बदलाव नहीं करना है)
 FROM node:18-alpine
 WORKDIR /usr/src/app
 COPY server/package*.json ./
