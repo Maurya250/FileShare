@@ -1,0 +1,6 @@
+{
+  "name": "fileshare-client",
+  "version": "1.0.0",
+  "description": "Client for the file sharing app",
+  "private": true
+}
